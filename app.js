@@ -23,7 +23,10 @@
     // Fonction pour afficher un slide spécifique en utilisant un index
     function slideTo(index) {
         // Vérifie si l'index est valide (compris entre 0 et le nombre de slides - 1)
-        currentSlide = index >= $slides.length || index < 1 ? 0 : index;
+		if (index < 0)
+			currentSlide = $slides.length - 1;
+		else
+			currentSlide = index >= $slides.length || index < 1 ? 0 : index;
         // Boucle sur tous les éléments de type "slide" pour les déplacer
         $slides.forEach($elt => $elt.style.transform = `translateX(-${currentSlide * 100}%)`);
         // Boucle sur tous les "dots" pour mettre à jour la couleur par la classe "active" ou "inactive"
